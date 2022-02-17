@@ -11,8 +11,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("Eevee")
-                .password("{noop}Eevee123").roles("USER");
+                .withUser("admin")
+                .password("{noop}admin123").roles("USER");
     }
 
     @Override
@@ -21,6 +21,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/filme/**")
                 .authenticated()
                 .and()
+                .csrf().disable()
                 .httpBasic();
     }
 

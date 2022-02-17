@@ -3,7 +3,6 @@ package com.digitalhouse.ApiFilmes.controller;
 import com.digitalhouse.ApiFilmes.model.Filme;
 import com.digitalhouse.ApiFilmes.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,12 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "")
 public class FilmeController {
 
+    private final FilmeService service;
+
     @Autowired
-    private FilmeService service;
+    public FilmeController(FilmeService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Filme> getAll(){
@@ -33,7 +36,7 @@ public class FilmeController {
     }
 
     @PostMapping
-    public Filme post(@RequestBody Filme filme){
+    public Filme postFilme(@RequestBody Filme filme){
         return service.create(filme);
     }
 
